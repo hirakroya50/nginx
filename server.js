@@ -12,6 +12,27 @@ app.get("/", (req, res) => {
   });
 });
 
+// Get all products
+app.get("/products", (req, res) => {
+  res.json({
+    service: SERVICE_NAME,
+    api: "/products",
+    products: [
+      { id: 1, name: "Laptop" },
+      { id: 2, name: "Phone" },
+    ],
+  });
+});
+
+// Get single product
+app.get("/products/:id", (req, res) => {
+  res.json({
+    service: SERVICE_NAME,
+    api: `/products/${req.params.id}`,
+    productId: req.params.id,
+  });
+});
+
 app.get("/health", (req, res) => {
   res.json({
     service: SERVICE_NAME,
