@@ -1,0 +1,36 @@
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx-practice
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - service1
+      - service2
+    restart: unless-stopped
+
+  service1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: express-service-1
+    environment:
+      PORT: 3001
+      SERVICE_NAME: "Service 1"
+    expose:
+      - "3001"
+    restart: unless-stopped
+
+  service2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: express-service-2
+    environment:
+      PORT: 3002
+      SERVICE_NAME: "Service 2"
+    expose:
+      - "3002"
+    restart: unless-stopped
