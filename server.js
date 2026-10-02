@@ -33,12 +33,12 @@ app.get("/products/:id", (req, res) => {
   });
 });
 
-app.get("/health", (req, res) => {
-  res.json({
-    service: SERVICE_NAME,
-    status: "healthy",
-  });
-});
+// app.get("/health", (req, res) => {
+//   res.json({
+//     service: SERVICE_NAME,
+//     status: "healthy",
+//   });
+// });
 
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`${SERVICE_NAME} running on port ${PORT}`);
