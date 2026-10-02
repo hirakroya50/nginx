@@ -1,15 +1,19 @@
  docker compose down
  docker compose up -d --build
-
-
-
-
-
-
-
-
+# to chck the config file & syntax error 
+docker exec nginx-practice nginx -t
+# for relode
+ docker exec nginx-practice nginx -s reload
 
 for i in {1..3}; do         
     curl -s http://localhost:8080/products
     echo
 done
+
+command for get the ip : "ipconfig getifaddr en0"
+
+NOTE:
+1. 
+# for see the upstream server address in the response header | add this in the ngnix.config location 
+            add_header X-Backend $upstream_addr always;
+# FOR TEST:  run this command : curl -s -D - -o /dev/null http://localhost:8080
