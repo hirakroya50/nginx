@@ -37,3 +37,12 @@ NOTE:
 # for see the upstream server address in the response header | add this in the ngnix.config location 
             add_header X-Backend $upstream_addr always;
 # FOR TEST:  run this command : curl -s -D - -o /dev/null http://localhost:8080
+
+
+
+
+#HAProxy -- comamnd 
+**** in haproxy.cfg file there should be a new line ----> at the end of the code
+# to validate the config file
+docker compose run --rm --no-deps load-balancer \
+  haproxy -c -f /usr/local/etc/haproxy/haproxy.cfg

@@ -1,45 +1,51 @@
 services:
   load-balancer:
     image: haproxy:3.2
-    container_name: nginx-entry
+    container_name: haproxy-entry
     ports:
       - "8080:80"
     volumes:
       - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
     depends_on:
-      - nginx-a
-      - nginx-b
+      # - nginx-a
+      # - nginx-b
+      - service1
+      - service2
+      - service3
+      - service4
+      - service5
+      - service6
     restart: unless-stopped
 
   # ----------Nginx containers for load balancing
 
-  nginx-a:
-    image: nginx:latest
-    container_name: nginx-a
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-    depends_on:
-      - service1
-      - service2
-      - service3
-      - service4
-      - service5
-      - service6
-    restart: unless-stopped
+  # nginx-a:
+  #   image: nginx:latest
+  #   container_name: nginx-a
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/nginx.conf:ro
+  #   depends_on:
+  #     - service1
+  #     - service2
+  #     - service3
+  #     - service4
+  #     - service5
+  #     - service6
+  #   restart: unless-stopped
 
-  nginx-b:
-    image: nginx:latest
-    container_name: nginx-b
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-    depends_on:
-      - service1
-      - service2
-      - service3
-      - service4
-      - service5
-      - service6
-    restart: unless-stopped
+  # nginx-b:
+  #   image: nginx:latest
+  #   container_name: nginx-b
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/nginx.conf:ro
+  #   depends_on:
+  #     - service1
+  #     - service2
+  #     - service3
+  #     - service4
+  #     - service5
+  #     - service6
+  #   restart: unless-stopped
 
   # ----------Nginx containers for load balancing
 
